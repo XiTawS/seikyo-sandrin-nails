@@ -25,11 +25,11 @@ export default function Navbar() {
       <nav className={`fixed top-0 w-full z-[100] transition-all duration-500 ${
         scrolled
           ? "bg-[var(--color-bg)]/95 backdrop-blur-md py-3 shadow-sm"
-          : "bg-transparent py-5"
+          : "bg-black/40 backdrop-blur-sm py-5"
       }`}>
         <div className="max-w-6xl mx-auto px-6 md:px-12 flex items-center justify-between">
-          <a href="#" className="font-display text-xl text-[var(--color-text)]">
-            Sandr&apos;in Nails
+          <a href="#" className="flex items-center">
+            <img src="https://res.cloudinary.com/dxcudyuno/image/upload/v1772835519/sandrin-nails/logo.jpg" alt="Sandr'in Nails" className="h-10" />
           </a>
 
           <div className="hidden md:flex items-center gap-8">

@@ -28,9 +28,10 @@ function Hero() {
   const { isAdmin } = useCMS();
 
   return (
-    <section className="relative h-[90vh] overflow-hidden">
+    <section className="relative min-h-screen overflow-hidden bg-[var(--color-bg)]">
+      {/* Full background image */}
       <EditableImage contentKey="home.hero.bg"
-        defaultSrc="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1920&q=80"
+        defaultSrc="https://res.cloudinary.com/dxcudyuno/image/upload/v1772835682/sandrin-nails/hero.jpg"
         alt="Sandr'in Nails" fill sizes="100vw" priority
         className="object-cover" hideButton inputRef={ref} />
       {isAdmin && (
@@ -40,21 +41,37 @@ function Hero() {
         </button>
       )}
 
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)] via-transparent to-[var(--color-bg)]/30" />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--color-bg)]" />
 
-      {/* Text at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 px-6 md:px-12 pb-10">
-        <div className="max-w-6xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.3 }}>
-            <EditableText contentKey="home.hero.label" defaultValue="Prothésiste ongulaire — Saint-Donat" tag="p"
-              className="text-[var(--color-text-muted)] text-xs tracking-[0.3em] uppercase mb-3" />
-            <EditableText contentKey="home.hero.title" defaultValue="Sandr'in Nails" tag="h1"
-              className="font-display text-6xl md:text-8xl text-[var(--color-text)] leading-[0.9] mb-4" />
-            <EditableText contentKey="home.hero.subtitle" defaultValue="L'art de sublimer vos mains" tag="p"
-              className="font-display italic text-xl md:text-2xl text-[var(--color-rose-dark)] mb-6" />
-          </motion.div>
-        </div>
+      {/* Contenu centré */}
+      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-6">
+        <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2 }}>
+          <img src="https://res.cloudinary.com/dxcudyuno/image/upload/v1772835519/sandrin-nails/logo.jpg" alt="SN" className="w-24 h-24 mx-auto mb-8" />
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.4 }}>
+          <EditableText contentKey="home.hero.title" defaultValue="Sandr'in Nails" tag="h1"
+            className="font-display text-6xl md:text-8xl text-white leading-[0.9] mb-3" />
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }}>
+          <EditableText contentKey="home.hero.subtitle" defaultValue="Chaque détail compte." tag="p"
+            className="font-display italic text-xl md:text-2xl text-white/80 mb-3" />
+          <EditableText contentKey="home.hero.label" defaultValue="Prothésiste ongulaire — Saint-Donat-sur-l'Herbasse" tag="p"
+            className="text-white/50 text-xs tracking-[0.3em] uppercase mb-10" />
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2 }}
+          className="flex flex-wrap justify-center gap-3">
+          <EditableButton contentKeyText="home.hero.cta1.text" contentKeyUrl="home.hero.cta1.url"
+            defaultText="Réserver sur Planity" defaultUrl="https://www.planity.com/sandrin-nails-26260-saint-donat-sur-lherbasse"
+            className="bg-[var(--color-rose-dark)] hover:bg-[var(--color-text)] text-white px-8 py-3.5 text-xs tracking-[0.2em] uppercase transition-all duration-500" />
+          <EditableButton contentKeyText="home.hero.cta2.text" contentKeyUrl="home.hero.cta2.url"
+            defaultText="Découvrir" defaultUrl="#prestations"
+            className="border border-white/30 text-white hover:bg-white/10 px-8 py-3.5 text-xs tracking-[0.2em] uppercase transition-all duration-500 backdrop-blur-sm" />
+        </motion.div>
       </div>
     </section>
   );
@@ -103,8 +120,8 @@ function Prestations() {
           <EditableText contentKey="home.prestations.title" defaultValue="Nos tarifs" tag="h2"
             className="font-display text-4xl md:text-5xl text-[var(--color-text)] mb-6" />
           <EditableImage contentKey="home.prestations.image"
-            defaultSrc="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80"
-            alt="Nail art" width={500} height={600}
+            defaultSrc="https://res.cloudinary.com/dxcudyuno/image/upload/v1772836053/sandrin-nails/produits.png"
+            alt="Produits Alessandro" width={500} height={600}
             className="w-full aspect-[3/4] object-cover hidden md:block" />
         </Fade>
 
@@ -144,7 +161,7 @@ function ImageBreak() {
     <section ref={ref} className="relative h-[35vh] overflow-hidden">
       <motion.div style={{ y }} className="absolute inset-0 scale-[1.2]">
         <EditableImage contentKey="home.break.image"
-          defaultSrc="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=1920&q=80"
+          defaultSrc="https://res.cloudinary.com/dxcudyuno/image/upload/v1772835748/sandrin-nails/avant-apres.jpg"
           alt="Nail art" fill sizes="100vw" className="object-cover" hideButton inputRef={inputRef} />
       </motion.div>
       <div className="absolute inset-0 bg-[var(--color-bg-deep)]/40" />
@@ -169,14 +186,14 @@ function Gallery() {
   const { openLightbox } = useLightbox();
 
   const images = [
-    { key: "p1", src: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1200&q=80", bento: "col-span-2 row-span-2" },
-    { key: "p2", src: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=800&q=80", bento: "col-span-1 row-span-1" },
-    { key: "p3", src: "https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=800&q=80", bento: "col-span-1 row-span-1" },
-    { key: "p4", src: "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=800&q=80", bento: "col-span-2 row-span-1" },
-    { key: "p5", src: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&q=80", bento: "col-span-1 row-span-1" },
-    { key: "p6", src: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=800&q=80", bento: "col-span-1 row-span-1" },
-    { key: "p7", src: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80", bento: "col-span-1 row-span-1" },
-    { key: "p8", src: "https://images.unsplash.com/photo-1610992015732-2449b0ae373e?w=800&q=80", bento: "col-span-1 row-span-1" },
+    { key: "p1", src: "https://res.cloudinary.com/dxcudyuno/image/upload/v1772835750/sandrin-nails/emeraude.jpg", bento: "col-span-2 row-span-2" },
+    { key: "p2", src: "https://res.cloudinary.com/dxcudyuno/image/upload/v1772835968/sandrin-nails/lavande.jpg", bento: "col-span-1 row-span-1" },
+    { key: "p3", src: "https://res.cloudinary.com/dxcudyuno/image/upload/v1772835749/sandrin-nails/coeurs-gold.jpg", bento: "col-span-1 row-span-1" },
+    { key: "p4", src: "https://res.cloudinary.com/dxcudyuno/image/upload/v1772835751/sandrin-nails/rouge-blanc.jpg", bento: "col-span-2 row-span-1" },
+    { key: "p5", src: "https://res.cloudinary.com/dxcudyuno/image/upload/v1772835917/sandrin-nails/blanc-paillettes.jpg", bento: "col-span-1 row-span-1" },
+    { key: "p6", src: "https://res.cloudinary.com/dxcudyuno/image/upload/v1772835747/sandrin-nails/noel-rouge.jpg", bento: "col-span-1 row-span-1" },
+    { key: "p7", src: "https://res.cloudinary.com/dxcudyuno/image/upload/v1772835918/sandrin-nails/noir-bleu.jpg", bento: "col-span-1 row-span-1" },
+    { key: "p8", src: "https://res.cloudinary.com/dxcudyuno/image/upload/v1772835873/sandrin-nails/nude.jpg", bento: "col-span-1 row-span-1" },
   ];
   const srcs = images.map(i => i.src);
 
@@ -211,14 +228,14 @@ function About() {
       <div className="max-w-5xl mx-auto grid md:grid-cols-12 gap-8 md:gap-12 items-center">
         <Fade className="md:col-span-5">
           <EditableImage contentKey="home.about.image"
-            defaultSrc="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80"
-            alt="Sandra" width={500} height={600}
+            defaultSrc="https://res.cloudinary.com/dxcudyuno/image/upload/v1772835709/sandrin-nails/sandrin.jpg"
+            alt="Sandrin" width={500} height={600}
             className="w-full aspect-[4/5] object-cover" />
         </Fade>
         <Fade delay={0.1} className="md:col-span-7">
           <EditableText contentKey="home.about.label" defaultValue="À propos" tag="p"
             className="text-[var(--color-rose)] text-xs tracking-[0.4em] uppercase mb-3" />
-          <EditableText contentKey="home.about.title" defaultValue="Sandra, votre prothésiste" tag="h2"
+          <EditableText contentKey="home.about.title" defaultValue="Sandrin, votre prothésiste" tag="h2"
             className="font-display text-3xl md:text-5xl text-[var(--color-text)] leading-[1.1] mb-6" />
           <EditableText contentKey="home.about.text"
             defaultValue="Passionnée par le nail art et la beauté des mains, je vous accueille dans mon espace à Saint-Donat-sur-l'Herbasse. Je travaille avec les produits Nailco — pose gel, semi-permanent, nail art créatif — chaque cliente repart avec des ongles qui lui ressemblent. Recommandée à 100% par mes clientes."
@@ -258,7 +275,7 @@ function Contact() {
           </div>
 
           <EditableButton contentKeyText="home.contact.cta.text" contentKeyUrl="home.contact.cta.url"
-            defaultText="Appeler Sandra" defaultUrl="tel:0621575648"
+            defaultText="Appeler Sandrin" defaultUrl="tel:0621575648"
             className="border border-[var(--color-rose)]/40 text-[var(--color-rose)] hover:bg-[var(--color-rose)] hover:text-white px-8 py-3 text-xs tracking-[0.2em] uppercase transition-all duration-500" />
         </Fade>
 
@@ -281,7 +298,7 @@ export default function Home() {
     return (
       <div className="fixed inset-0 bg-[var(--color-bg)] z-[99999] flex items-center justify-center">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center">
-          <h1 className="font-display text-5xl text-[var(--color-text)] mb-4">Sandr&apos;in Nails</h1>
+          <img src="https://res.cloudinary.com/dxcudyuno/image/upload/v1772835519/sandrin-nails/logo.jpg" alt="Sandr'in Nails" className="w-32 mx-auto mb-4" />
           <div className="w-8 h-8 border border-[var(--color-rose)] border-t-transparent rounded-full animate-spin mx-auto" />
         </motion.div>
       </div>
