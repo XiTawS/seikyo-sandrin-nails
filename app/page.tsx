@@ -281,7 +281,7 @@ function Contact() {
 
         <Fade delay={0.15} className="md:col-span-7">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2834.2!2d4.9847!3d45.1231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSandr%27in+Nails!5e0!3m2!1sfr!2sfr"
+            src="https://maps.google.com/maps?q=Sandrin+Nails+Saint-Donat-sur-l%27Herbasse&output=embed&z=16"
             className="w-full h-[250px] md:h-full md:min-h-[300px] border-0 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
             allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
         </Fade>
